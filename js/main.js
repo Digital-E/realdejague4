@@ -741,11 +741,11 @@ class touchEventsObject {
     this.previousY = this.currentY;
 
     if (this.currentTouchTime > this.startTouchTime + 200) {
-      scroll.scrolled(this.deltaY * 0.05);
-      // mainContainer.translateMainContainer(this.deltaY * 0.05, true);
+      // scroll.scrolled(this.deltaY * 0.05);
+      mainContainer.translateMainContainer(this.deltaY * 0.05, true);
     } else {
-      scroll.scrolled(this.deltaY);
-      // mainContainer.translateMainContainer(this.deltaY, true);
+      // scroll.scrolled(this.deltaY,);
+      mainContainer.translateMainContainer(this.deltaY, true);
     }
   }
 
