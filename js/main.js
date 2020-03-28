@@ -590,7 +590,7 @@ class mainContainerConstructor {
 
   translateMainContainer(delta) {
     this.delta =
-      Math.abs(delta) > 50 && isMobile ? (delta > 0 ? 50 : -50) : delta;
+      Math.abs(delta) > 100 && isMobile ? (delta > 0 ? 100 : -100) : delta;
     this.tween = gsap.to(this.element, {
       ease: Expo.easeOut,
       y: this.previousPosition + this.delta,
