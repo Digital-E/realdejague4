@@ -1,13 +1,3 @@
-document.documentElement.scrollTop = 1; // For Chrome, Firefox, IE and Opera
-
-document.body.scrollTop = 1; // For Safari
-
-window.onbeforeunload = function() {
-  document.documentElement.scrollTop = 1; // For Chrome, Firefox, IE and Opera
-
-  document.body.scrollTop = 1; // For Safari
-};
-
 setTimeout(() => {
   document.querySelector("body").classList.add("show");
 }, 1000);
@@ -515,17 +505,11 @@ class scrollObject {
     //   item.updateIsInViewport();
     // });
 
-    if (resetDirection) {
-      resetDirection === "down"
-        ? (this.previousPosition = 0)
-        : (this.previousPosition = window.innerHeight);
-    }
-
-    let delta = window.scrollY - this.previousPosition;
+    let delta = e;
 
     mainContainer.translateMainContainer(delta);
 
-    this.previousPosition = window.scrollY;
+    this.previousPosition = e;
 
     this.isScrolling = true;
 
@@ -605,8 +589,9 @@ class mainContainerConstructor {
   }
 
   translateMainContainer(delta) {
-    this.delta =
-      Math.abs(delta) > 20 && isMobile ? (delta > 0 ? 20 : -20) : delta;
+    // this.delta =
+    //   Math.abs(delta) > 20 && isMobile ? (delta > 0 ? 20 : -20) : delta;
+    this.delta = delta;
     this.tween = gsap.to(this.element, {
       ease: Expo.easeOut,
       y: this.previousPosition + this.delta,
@@ -682,36 +667,18 @@ mainContainer.translateMainContainer(0);
 
 let scroll = new scrollObject();
 
-//Reposition
-var height = window.innerHeight;
-
-let body = document.querySelector("body");
-
 if (!window.mobilecheck()) {
-  body.style.height = `${height + window.innerHeight}px`;
-}
+  //CROSS-BROWSER NORMALIZE WHEEL
+  var hamster = Hamster(window);
 
-let scrollTrigger = _.throttle(e => {
-  let resetDirection;
-  if (
-    window.scrollY >=
-    body.getBoundingClientRect().height - window.innerHeight
-  ) {
-    document.documentElement.scrollTop = document.body.scrollTop = 1;
+  hamster.wheel(function(event, delta, deltaX, deltaY) {
+    event.preventDefault();
+    // console.log(delta, deltaX, deltaY);
+    scroll.scrolled(delta);
+  });
 
-    resetDirection = "down";
-  } else if (window.scrollY === 0) {
-    document.documentElement.scrollTop = document.body.scrollTop =
-      body.getBoundingClientRect().height - window.innerHeight - 1;
-    resetDirection = "up";
-  }
-
-  //Trigger Scroll Constructor
-  scroll.scrolled(e, resetDirection);
-}, 0);
-
-if (!window.mobilecheck()) {
-  window.addEventListener("scroll", scrollTrigger);
+  // // destroy
+  // hamster.unwheel();
 }
 
 let previousHeight = window.innerHeight;
@@ -725,60 +692,69 @@ window.addEventListener("resize", function() {
   body.style.height = `${window.innerHeight * 2}px`;
 });
 
-//Touch Javascript
+// //Touch Javascript
 
-class touchEventsObject {
-  constructor() {
-    this.element = document.querySelector(`.container`);
-    this.initialY;
-    this.previousY = 0;
-    this.deltaY;
-    this.tween = null;
-    this.direction;
-    this.previousDirection;
+// class touchEventsObject {
+//   constructor() {
+//     this.element = document.querySelector(`.container`);
+//     this.initialY;
+//     this.previousY = 0;
+//     this.deltaY;
+//     this.tween = null;
+//     this.direction;
+//     this.previousDirection;
 
-    window.addEventListener("touchstart", e => {
-      this.touchStart(e);
-    });
+//     window.addEventListener("touchstart", e => {
+//       this.touchStart(e);
+//     });
 
-    window.addEventListener("touchmove", e => {
-      this.touchMove(e);
-    });
+//     window.addEventListener("touchmove", e => {
+//       this.touchMove(e);
+//     });
 
-    window.addEventListener("touchend", e => {
-      this.touchEnd(e);
-    });
-  }
+//     window.addEventListener("touchend", e => {
+//       this.touchEnd(e);
+//     });
+//   }
 
-  touchStart(e) {
-    this.initialY = e.touches[0].clientY;
-  }
+//   touchStart(e) {
+//     this.initialY = e.touches[0].clientY;
+//   }
 
-  touchMove(e) {
-    this.currentY = e.touches[0].clientY;
+//   touchMove(e) {
+//     this.currentY = e.touches[0].clientY;
 
-    this.direction = this.currentY - this.previousY >= 0 ? "up" : "down";
+//     this.direction = this.currentY - this.previousY >= 0 ? "up" : "down";
 
-    if (this.direction === this.previousDirection) {
-      this.deltaY = this.currentY - this.initialY;
-    } else {
-      this.initialY = this.previousY;
-      this.deltaY = this.currentY - this.initialY;
-    }
+//     if (this.direction === this.previousDirection) {
+//       this.deltaY = this.currentY - this.initialY;
+//     } else {
+//       this.initialY = this.previousY;
+//       this.deltaY = this.currentY - this.initialY;
+//     }
 
-    this.previousDirection =
-      this.currentY - this.previousY >= 0 ? "up" : "down";
+//     this.previousDirection =
+//       this.currentY - this.previousY >= 0 ? "up" : "down";
 
-    this.previousY = this.currentY;
-    mainContainer.translateMainContainer(this.deltaY, true);
-  }
+//     this.previousY = this.currentY;
+//     mainContainer.translateMainContainer(this.deltaY, true);
+//   }
 
-  touchEnd(e) {
-    // mainContainer.previousMobileLocation = mainContainer.previousPosition;
-  }
-}
+//   touchEnd(e) {
+//     // mainContainer.previousMobileLocation = mainContainer.previousPosition;
+//   }
+// }
 
-let touchEvents;
+// let touchEvents;
 if (window.mobilecheck()) {
-  touchEvents = new touchEventsObject();
+  // touchEvents = new touchEventsObject();
+  var hammertime = new Hammer(window);
+  hammertime.on("swipe", function(ev) {
+    mainContainer.translateMainContainer(ev.deltaY);
+  });
+  hammertime.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
+
+  hammertime.on("pan", function(ev) {
+    mainContainer.translateMainContainer(ev.deltaY * 0.1);
+  });
 }

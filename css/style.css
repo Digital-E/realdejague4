@@ -39,13 +39,8 @@ body {
 }
 
 .body-desktop-version {
-  position: absolute;
-  height: calc(2 * 100vh);
-  margin: 0;
-  padding: 0;
-  background-color: black;
-  width: 100%;
-  text-rendering: optimizeLegibility;
+  position: fixed;
+  height: 100%;
 }
 
 body::-webkit-scrollbar {
