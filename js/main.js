@@ -590,10 +590,10 @@ class mainContainerConstructor {
 
   translateMainContainer(delta, isPanning) {
     this.delta =
-      Math.abs(delta) > 30 && isMobile
+      Math.abs(delta) > 20 && isMobile
         ? delta > 0
-          ? 30
-          : -30
+          ? 20
+          : -20
         : Math.abs(delta) > 100
         ? delta > 0
           ? 100
