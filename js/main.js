@@ -590,10 +590,10 @@ class mainContainerConstructor {
 
   translateMainContainer(delta, isPanning) {
     this.delta =
-      Math.abs(delta) > 100 && isMobile
+      Math.abs(delta) > 30 && isMobile
         ? delta > 0
-          ? 50
-          : -50
+          ? 30
+          : -30
         : Math.abs(delta) > 100
         ? delta > 0
           ? 100
@@ -700,7 +700,6 @@ class touchEventsObject {
     this.tween = null;
     this.direction;
     this.previousDirection;
-    this.isPanning;
     this.startTouchTime;
     this.currentTouchTime;
 
@@ -719,13 +718,40 @@ class touchEventsObject {
 
   touchStart(e) {
     this.initialY = e.touches[0].clientY;
-    this.isPanning = false;
-    this.startTouchTime = new Date().getTime();
+
+    // this.startTouchTime = new Date().getTime();
   }
+
+  // touchMove(e) {
+  //   this.currentY = e.touches[0].clientY;
+  //   this.currentTouchTime = new Date().getTime();
+
+  //   this.direction = this.currentY - this.previousY >= 0 ? "up" : "down";
+
+  //   if (this.direction === this.previousDirection) {
+  //     this.deltaY = this.currentY - this.initialY;
+  //   } else {
+  //     this.initialY = this.previousY;
+  //     this.deltaY = this.currentY - this.initialY;
+  //   }
+
+  //   this.previousDirection =
+  //     this.currentY - this.previousY >= 0 ? "up" : "down";
+
+  //   this.previousY = this.currentY;
+
+  //   if (this.currentTouchTime > this.startTouchTime + 150) {
+  //     this.initialY = this.previousY;
+
+  //     mainContainer.translateMainContainer(this.deltaY * 1, true);
+  //   } else {
+  //     // scroll.scrolled(this.deltaY,);
+  //     mainContainer.translateMainContainer(this.deltaY, false);
+  //   }
+  // }
 
   touchMove(e) {
     this.currentY = e.touches[0].clientY;
-    this.currentTouchTime = new Date().getTime();
 
     this.direction = this.currentY - this.previousY >= 0 ? "up" : "down";
 
@@ -740,15 +766,7 @@ class touchEventsObject {
       this.currentY - this.previousY >= 0 ? "up" : "down";
 
     this.previousY = this.currentY;
-
-    if (this.currentTouchTime > this.startTouchTime + 150) {
-      this.initialY = this.previousY;
-
-      mainContainer.translateMainContainer(this.deltaY * 1, true);
-    } else {
-      // scroll.scrolled(this.deltaY,);
-      mainContainer.translateMainContainer(this.deltaY, false);
-    }
+    mainContainer.translateMainContainer(this.deltaY, true);
   }
 
   touchEnd(e) {}
