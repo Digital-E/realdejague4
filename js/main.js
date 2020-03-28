@@ -723,12 +723,12 @@ class touchEventsObject {
   touchStart(e) {
     this.initialY = e.touches[0].clientY;
     this.isPanning = false;
-    this.startTouchTime = new Date().getMilliseconds();
+    this.startTouchTime = new Date().getTime();
   }
 
   touchMove(e) {
     this.currentY = e.touches[0].clientY;
-    this.currentTouchTime = new Date().getMilliseconds();
+    this.currentTouchTime = new Date().getTime();
 
     this.direction = this.currentY - this.previousY >= 0 ? "up" : "down";
 
@@ -744,8 +744,8 @@ class touchEventsObject {
 
     this.previousY = this.currentY;
 
-    if (this.currentTouchTime > this.startTouchTime + 300) {
-      mainContainer.translateMainContainer(this.deltaY * 0.1, true);
+    if (this.currentTouchTime > this.startTouchTime + 200) {
+      mainContainer.translateMainContainer(this.deltaY * 0.05, true);
     } else {
       mainContainer.translateMainContainer(this.deltaY, true);
     }
