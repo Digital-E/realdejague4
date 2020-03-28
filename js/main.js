@@ -588,7 +588,7 @@ class mainContainerConstructor {
     this.delta = 0;
   }
 
-  translateMainContainer(delta) {
+  translateMainContainer(delta, isPanning) {
     this.delta =
       Math.abs(delta) > 100 && isMobile
         ? delta > 0
@@ -741,13 +741,13 @@ class touchEventsObject {
 
     this.previousY = this.currentY;
 
-    if (this.currentTouchTime > this.startTouchTime + 200) {
-      this.initialY = e.touches[0].clientY;
-      // console.log(this.deltaY);
+    if (this.currentTouchTime > this.startTouchTime + 150) {
+      this.initialY = this.previousY;
+
       mainContainer.translateMainContainer(this.deltaY * 1, true);
     } else {
       // scroll.scrolled(this.deltaY,);
-      mainContainer.translateMainContainer(this.deltaY, true);
+      mainContainer.translateMainContainer(this.deltaY, false);
     }
   }
 

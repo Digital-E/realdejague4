@@ -10,6 +10,10 @@
   font-family: "Helvetica Neue Light";
 }
 
+html {
+  touch-action: none;
+}
+
 body {
   position: fixed;
   height: 100%;
