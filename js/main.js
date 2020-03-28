@@ -573,7 +573,7 @@ let isMobile = window.mobilecheck() ? true : false;
 
 class mainContainerConstructor {
   constructor() {
-    this.previousPosition = -2 * window.innerHeight;
+    this.previousPosition = 0;
     this.element = document.querySelector(`.container`);
     this.containerBottom = null;
     this.containerTop = null;
@@ -589,9 +589,8 @@ class mainContainerConstructor {
   }
 
   translateMainContainer(delta) {
-    // this.delta =
-    //   Math.abs(delta) > 20 && isMobile ? (delta > 0 ? 20 : -20) : delta;
-    this.delta = delta;
+    this.delta =
+      Math.abs(delta) > 50 && isMobile ? (delta > 0 ? 50 : -50) : delta;
     this.tween = gsap.to(this.element, {
       ease: Expo.easeOut,
       y: this.previousPosition + this.delta,
@@ -680,17 +679,6 @@ if (!window.mobilecheck()) {
   // // destroy
   // hamster.unwheel();
 }
-
-let previousHeight = window.innerHeight;
-
-window.addEventListener("resize", function() {
-  let currentHeight = window.innerHeight;
-  let delta = currentHeight - previousHeight;
-
-  previousHeight = currentHeight;
-
-  body.style.height = `${window.innerHeight * 2}px`;
-});
 
 //Touch Javascript
 
