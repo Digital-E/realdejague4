@@ -590,11 +590,19 @@ class mainContainerConstructor {
 
   translateMainContainer(delta) {
     this.delta =
-      Math.abs(delta) > 100 && isMobile ? (delta > 0 ? 100 : -100) : delta;
+      Math.abs(delta) > 100 && isMobile
+        ? delta > 0
+          ? 100
+          : -100
+        : Math.abs(delta) > 100
+        ? delta > 0
+          ? 100
+          : -100
+        : delta;
     this.tween = gsap.to(this.element, {
       ease: Expo.easeOut,
       y: this.previousPosition + this.delta,
-      duration: isMobile ? 3 : 2
+      duration: isMobile ? 3 : 1
     });
 
     let scrollAmount = this.previousPosition;
@@ -733,9 +741,11 @@ class touchEventsObject {
     this.previousY = this.currentY;
 
     if (this.currentTouchTime > this.startTouchTime + 200) {
-      mainContainer.translateMainContainer(this.deltaY * 0.05, true);
+      scroll.scrolled(this.deltaY * 0.05);
+      // mainContainer.translateMainContainer(this.deltaY * 0.05, true);
     } else {
-      mainContainer.translateMainContainer(this.deltaY, true);
+      scroll.scrolled(this.deltaY);
+      // mainContainer.translateMainContainer(this.deltaY, true);
     }
   }
 
