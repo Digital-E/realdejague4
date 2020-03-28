@@ -692,69 +692,81 @@ window.addEventListener("resize", function() {
   body.style.height = `${window.innerHeight * 2}px`;
 });
 
-// //Touch Javascript
+//Touch Javascript
 
-// class touchEventsObject {
-//   constructor() {
-//     this.element = document.querySelector(`.container`);
-//     this.initialY;
-//     this.previousY = 0;
-//     this.deltaY;
-//     this.tween = null;
-//     this.direction;
-//     this.previousDirection;
+class touchEventsObject {
+  constructor() {
+    this.element = document.querySelector(`.container`);
+    this.initialY;
+    this.previousY = 0;
+    this.deltaY;
+    this.tween = null;
+    this.direction;
+    this.previousDirection;
+    this.isPanning;
+    this.startTouchTime;
+    this.currentTouchTime;
 
-//     window.addEventListener("touchstart", e => {
-//       this.touchStart(e);
-//     });
+    window.addEventListener("touchstart", e => {
+      this.touchStart(e);
+    });
 
-//     window.addEventListener("touchmove", e => {
-//       this.touchMove(e);
-//     });
+    window.addEventListener("touchmove", e => {
+      this.touchMove(e);
+    });
 
-//     window.addEventListener("touchend", e => {
-//       this.touchEnd(e);
-//     });
-//   }
+    window.addEventListener("touchend", e => {
+      this.touchEnd(e);
+    });
+  }
 
-//   touchStart(e) {
-//     this.initialY = e.touches[0].clientY;
-//   }
+  touchStart(e) {
+    this.initialY = e.touches[0].clientY;
+    this.isPanning = false;
+    this.startTouchTime = new Date().getMilliseconds();
+  }
 
-//   touchMove(e) {
-//     this.currentY = e.touches[0].clientY;
+  touchMove(e) {
+    this.currentY = e.touches[0].clientY;
+    this.currentTouchTime = new Date().getMilliseconds();
 
-//     this.direction = this.currentY - this.previousY >= 0 ? "up" : "down";
+    this.direction = this.currentY - this.previousY >= 0 ? "up" : "down";
 
-//     if (this.direction === this.previousDirection) {
-//       this.deltaY = this.currentY - this.initialY;
-//     } else {
-//       this.initialY = this.previousY;
-//       this.deltaY = this.currentY - this.initialY;
-//     }
+    if (this.direction === this.previousDirection) {
+      this.deltaY = this.currentY - this.initialY;
+    } else {
+      this.initialY = this.previousY;
+      this.deltaY = this.currentY - this.initialY;
+    }
 
-//     this.previousDirection =
-//       this.currentY - this.previousY >= 0 ? "up" : "down";
+    this.previousDirection =
+      this.currentY - this.previousY >= 0 ? "up" : "down";
 
-//     this.previousY = this.currentY;
-//     mainContainer.translateMainContainer(this.deltaY, true);
-//   }
+    this.previousY = this.currentY;
 
-//   touchEnd(e) {
-//     // mainContainer.previousMobileLocation = mainContainer.previousPosition;
-//   }
-// }
+    if (this.currentTouchTime > this.startTouchTime + 300) {
+      mainContainer.translateMainContainer(this.deltaY * 0.1, true);
+    } else {
+      mainContainer.translateMainContainer(this.deltaY, true);
+    }
+  }
 
-// let touchEvents;
+  touchEnd(e) {}
+}
+
+let touchEvents;
 if (window.mobilecheck()) {
-  // touchEvents = new touchEventsObject();
-  var hammertime = new Hammer(window);
-  hammertime.on("swipe", function(ev) {
-    mainContainer.translateMainContainer(ev.deltaY);
-  });
-  hammertime.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
+  touchEvents = new touchEventsObject();
+  // var hammertime = new Hammer(window);
 
-  hammertime.on("pan", function(ev) {
-    mainContainer.translateMainContainer(ev.deltaY * 0.1);
-  });
+  // hammertime.on("swipe", function(ev, options) {
+  //   mainContainer.translateMainContainer(ev.deltaY);
+  // });
+  // hammertime.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
+  // hammertime.get("swipe").set({ threshold: 1 });
+  // hammertime.get("swipe").set({ velocity: 0.1 });
+
+  // hammertime.on("pan", function(ev) {
+  //   mainContainer.translateMainContainer(ev.deltaY * 0.1);
+  // });
 }
