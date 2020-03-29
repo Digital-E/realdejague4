@@ -579,9 +579,9 @@ class mainContainerConstructor {
     this.containerTop = null;
     this.scrollAmount = 0;
     this.indexUp = assets.length - 1;
-    this.scrollThresholdUp = -2;
+    this.scrollThresholdUp = -4;
     this.indexDown = 0;
-    this.scrollThresholdDown = -2;
+    this.scrollThresholdDown = -4;
     this.multiplierDown = assets.length + 0.5;
     this.multiplierUp = -0.5;
     this.tween = null;
