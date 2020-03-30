@@ -1,6 +1,59 @@
 setTimeout(() => {
-  document.querySelector("body").classList.add("show");
-}, 1000);
+  document.querySelector(".container-outer").classList.add("show");
+
+  document.querySelector("body").style.pointerEvents = "auto";
+
+  //Add Event Listener to Biography  Button
+  document.querySelector(".biography-button").addEventListener("click", () => {
+    document.querySelector(".biography-container").style.display = "flex";
+    setTimeout(() => {
+      document
+        .querySelector(".biography-container")
+        .classList.add("show-biography-container");
+
+      document
+        .querySelector(".biography-container__button")
+        .classList.remove("hide-biography-button");
+
+      document
+        .querySelector(".biography-container__button")
+        .classList.add("show-biography-button");
+    }, 10);
+  });
+
+  //Add Event Listener to Biography Container Button
+  document
+    .querySelector(".biography-container__button")
+    .addEventListener("click", () => {
+      document
+        .querySelector(".biography-container")
+        .classList.remove("show-biography-container");
+
+      document
+        .querySelector(".biography-container__button")
+        .classList.add("hide-biography-button");
+
+      document
+        .querySelector(".biography-container__button")
+        .classList.remove("show-biography-button");
+
+      setTimeout(() => {
+        document.querySelector(".biography-container").style.display = "none";
+      }, 1000);
+    });
+}, 4500);
+
+setTimeout(() => {
+  document.querySelector(".intro-logo").classList.add("show-logo");
+}, 500);
+
+setTimeout(() => {
+  document.querySelector(".intro-logo__img").classList.add("show-logo");
+}, 700);
+
+setTimeout(() => {
+  document.querySelector(".intro-logo").classList.remove("show-logo");
+}, 4000);
 
 //Check if mobile function
 
@@ -32,14 +85,6 @@ if (!window.mobilecheck()) {
     .querySelector(".container-gradient")
     .classList.add("container-gradient-version");
 }
-
-// lottie.loadAnimation({
-//   container: document.querySelector("body"), // the dom element that will contain the animation
-//   renderer: "svg",
-//   loop: true,
-//   autoplay: true,
-//   path: "./js/animation/data.json" // the path to the animation json
-// });
 
 //Create Title Nodes
 
@@ -279,6 +324,16 @@ class containerLocationObject {
       gsap.to(document.querySelector(".container"), {
         webkitFilter: "blur(" + blurElement.a + "px)"
       });
+
+      document
+        .querySelector(".biography-button")
+        .classList.add("hide-biography-button");
+
+      document
+        .querySelector(".biography-button")
+        .classList.remove("show-biography-button");
+
+      document.querySelector(".container").style.pointerEvents = "none";
     }
 
     gsap.to(blurElement, {
@@ -394,6 +449,16 @@ class containerLocationObject {
           .cloneNode(true);
 
         player.destroy();
+
+        document
+          .querySelector(".biography-button")
+          .classList.remove("hide-biography-button");
+
+        document
+          .querySelector(".biography-button")
+          .classList.add("show-biography-button");
+
+        document.querySelector(".container").style.pointerEvents = "auto";
 
         // Unlock Body
         if (!window.mobilecheck()) {
