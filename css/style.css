@@ -162,6 +162,10 @@ body {
   padding-bottom: 5rem;
 }
 
+.biography-container__text::-webkit-scrollbar {
+  display: none;
+}
+
 @media (min-width: 576px) {
   .biography-container__text {
     width: 70%;
@@ -435,6 +439,9 @@ body::-webkit-scrollbar {
     margin-top: 1rem;
   }
 } */
+.credits-container::-webkit-scrollbar {
+  display: none;
+}
 
 .credits-container {
   z-index: 999;

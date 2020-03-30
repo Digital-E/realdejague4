@@ -1,3 +1,5 @@
+let isMobileGeneral = false;
+
 setTimeout(() => {
   document.querySelector(".container-outer").classList.add("show");
 
@@ -6,6 +8,12 @@ setTimeout(() => {
   //Add Event Listener to Biography  Button
   document.querySelector(".biography-button").addEventListener("click", () => {
     document.querySelector(".biography-container").style.display = "flex";
+
+    if (isMobileGeneral) touchEvents.disableTouchEvents();
+
+    //destroy
+    if (!isMobileGeneral) hamster.unwheel();
+
     setTimeout(() => {
       document
         .querySelector(".biography-container")
@@ -25,6 +33,15 @@ setTimeout(() => {
   document
     .querySelector(".biography-container__button")
     .addEventListener("click", () => {
+      if (isMobileGeneral) touchEvents.enableTouchEvents();
+
+      if (!isMobileGeneral) {
+        hamster.wheel(function(event, delta, deltaX, deltaY) {
+          event.preventDefault();
+          scroll.scrolled(delta);
+        });
+      }
+
       document
         .querySelector(".biography-container")
         .classList.remove("show-biography-container");
@@ -73,6 +90,10 @@ window.mobilecheck = function() {
   })(navigator.userAgent || navigator.vendor || window.opera);
   return check;
 };
+
+if (window.mobilecheck()) {
+  isMobileGeneral = true;
+}
 
 //Add mobile styles
 
@@ -385,6 +406,11 @@ class containerLocationObject {
   openVideo(e) {
     this.event = e.currentTarget;
 
+    if (isMobileGeneral) touchEvents.disableTouchEvents();
+
+    //destroy
+    if (!isMobileGeneral) hamster.unwheel();
+
     //Set Cursor to loading
     document.body.style.cursor = "wait";
 
@@ -459,6 +485,16 @@ class containerLocationObject {
           .classList.add("show-biography-button");
 
         document.querySelector(".container").style.pointerEvents = "auto";
+
+        if (isMobileGeneral) touchEvents.enableTouchEvents();
+
+        if (!isMobileGeneral) {
+          hamster.wheel(function(event, delta, deltaX, deltaY) {
+            event.preventDefault();
+            // console.log(delta, deltaX, deltaY);
+            scroll.scrolled(delta);
+          });
+        }
 
         // Unlock Body
         if (!window.mobilecheck()) {
@@ -742,21 +778,30 @@ mainContainer.translateMainContainer(0);
 
 let scroll = new scrollObject();
 
-if (!window.mobilecheck()) {
-  //CROSS-BROWSER NORMALIZE WHEEL
-  var hamster = Hamster(window);
+//CROSS-BROWSER NORMALIZE WHEEL
+var hamster = Hamster(window);
 
+if (!window.mobilecheck()) {
   hamster.wheel(function(event, delta, deltaX, deltaY) {
     event.preventDefault();
     // console.log(delta, deltaX, deltaY);
     scroll.scrolled(delta);
   });
-
-  // // destroy
-  // hamster.unwheel();
 }
 
 //Touch Javascript
+
+let touchStart = e => {
+  touchEvents.touchStart(e);
+};
+
+let touchMove = e => {
+  touchEvents.touchMove(e);
+};
+
+let touchEnd = e => {
+  touchEvents.touchEnd(e);
+};
 
 class touchEventsObject {
   constructor() {
@@ -766,21 +811,26 @@ class touchEventsObject {
     this.deltaY;
     this.tween = null;
     this.direction;
-    this.previousDirection;
-    this.startTouchTime;
-    this.currentTouchTime;
 
-    window.addEventListener("touchstart", e => {
-      this.touchStart(e);
-    });
+    window.addEventListener("touchstart", touchStart);
 
-    window.addEventListener("touchmove", e => {
-      this.touchMove(e);
-    });
+    window.addEventListener("touchmove", touchMove);
 
-    window.addEventListener("touchend", e => {
-      this.touchEnd(e);
-    });
+    window.addEventListener("touchend", touchEnd);
+  }
+
+  disableTouchEvents() {
+    window.removeEventListener("touchstart", touchStart);
+    window.removeEventListener("touchmove", touchMove);
+    window.removeEventListener("touchend", touchEnd);
+  }
+
+  enableTouchEvents() {
+    window.addEventListener("touchstart", touchStart);
+
+    window.addEventListener("touchmove", touchMove);
+
+    window.addEventListener("touchend", touchEnd);
   }
 
   touchStart(e) {
@@ -824,16 +874,4 @@ class touchEventsObject {
 let touchEvents;
 if (window.mobilecheck()) {
   touchEvents = new touchEventsObject();
-  // var hammertime = new Hammer(window);
-
-  // hammertime.on("swipe", function(ev, options) {
-  //   mainContainer.translateMainContainer(ev.deltaY);
-  // });
-  // hammertime.get("swipe").set({ direction: Hammer.DIRECTION_VERTICAL });
-  // hammertime.get("swipe").set({ threshold: 1 });
-  // hammertime.get("swipe").set({ velocity: 0.1 });
-
-  // hammertime.on("pan", function(ev) {
-  //   mainContainer.translateMainContainer(ev.deltaY * 0.1);
-  // });
 }
