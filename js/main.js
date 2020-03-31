@@ -13,7 +13,6 @@ setTimeout(() => {
 
     if (isMobileGeneral) touchEvents.disableTouchEvents();
 
-    //destroy
     if (!isMobileGeneral) disableScroll = true;
 
     setTimeout(() => {
@@ -412,13 +411,6 @@ class containerLocationObject {
     this.event.children[0].classList.remove("not-loading");
 
     this.createVideo(this.event);
-
-    //Lock Body
-    if (!window.mobilecheck()) {
-      bodyScrollLock.disableBodyScroll(
-        document.querySelector(".credits-container")
-      );
-    }
   }
 
   closeVideo(e) {
@@ -457,12 +449,14 @@ class containerLocationObject {
       onComplete: () => {
         //Remove Credits
 
-        let parentNodeCredits = document.querySelector(
-          ".container-video-overlay"
-        );
-        let childNodeCredits = document.querySelector(".credits-container");
+        if (isMobile) {
+          let parentNodeCredits = document.querySelector(
+            ".container-video-overlay"
+          );
+          let childNodeCredits = document.querySelector(".credits-container");
 
-        if (childNodeCredits) parentNodeCredits.removeChild(childNodeCredits);
+          if (childNodeCredits) parentNodeCredits.removeChild(childNodeCredits);
+        }
 
         // Remove Plyr and Video, then add the original Iframe
 
@@ -492,16 +486,9 @@ class containerLocationObject {
         if (isMobileGeneral) touchEvents.enableTouchEvents();
 
         if (!isMobileGeneral) {
-          disableScroll = false;
-        }
-
-        // Unlock Body
-        if (!window.mobilecheck()) {
           setTimeout(() => {
-            bodyScrollLock.enableBodyScroll(
-              document.querySelector(".credits-container")
-            );
-          }, 500);
+            disableScroll = false;
+          }, 200);
         }
       }
     });
