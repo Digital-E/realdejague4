@@ -1,5 +1,7 @@
 let isMobileGeneral = false;
 
+let disableScroll = false;
+
 setTimeout(() => {
   document.querySelector(".container-outer").classList.add("show");
 
@@ -12,7 +14,7 @@ setTimeout(() => {
     if (isMobileGeneral) touchEvents.disableTouchEvents();
 
     //destroy
-    if (!isMobileGeneral) hamster.unwheel();
+    if (!isMobileGeneral) disableScroll = true;
 
     setTimeout(() => {
       document
@@ -35,12 +37,7 @@ setTimeout(() => {
     .addEventListener("click", () => {
       if (isMobileGeneral) touchEvents.enableTouchEvents();
 
-      if (!isMobileGeneral) {
-        hamster.wheel(function(event, delta, deltaX, deltaY) {
-          event.preventDefault();
-          scroll.scrolled(delta);
-        });
-      }
+      if (!isMobileGeneral) disableScroll = false;
 
       document
         .querySelector(".biography-container")
@@ -391,9 +388,6 @@ class containerLocationObject {
     document.getElementById("plyr-video-iframe").setAttribute("src", link);
 
     player = new Plyr("#player", {
-      // displayDuration: false,
-      // controls: false,
-      // muted: true,
       fullscreen: { enabled: true, fallback: true, iosNative: true },
       loop: { active: true }
     });
@@ -409,7 +403,7 @@ class containerLocationObject {
     if (isMobileGeneral) touchEvents.disableTouchEvents();
 
     //destroy
-    if (!isMobileGeneral) hamster.unwheel();
+    if (!isMobileGeneral) disableScroll = true;
 
     //Set Cursor to loading
     document.body.style.cursor = "wait";
@@ -461,6 +455,15 @@ class containerLocationObject {
       duration: 1,
       delay: 0.1,
       onComplete: () => {
+        //Remove Credits
+
+        let parentNodeCredits = document.querySelector(
+          ".container-video-overlay"
+        );
+        let childNodeCredits = document.querySelector(".credits-container");
+
+        if (childNodeCredits) parentNodeCredits.removeChild(childNodeCredits);
+
         // Remove Plyr and Video, then add the original Iframe
 
         let parentNode = document.querySelector(".video-player-container");
@@ -489,11 +492,7 @@ class containerLocationObject {
         if (isMobileGeneral) touchEvents.enableTouchEvents();
 
         if (!isMobileGeneral) {
-          hamster.wheel(function(event, delta, deltaX, deltaY) {
-            event.preventDefault();
-            // console.log(delta, deltaX, deltaY);
-            scroll.scrolled(delta);
-          });
+          disableScroll = false;
         }
 
         // Unlock Body
@@ -517,7 +516,7 @@ class containerLocationObject {
       setTimeout(() => {
         credits.classList.remove("hidden-credits");
         credits.classList.add("show-credits");
-      }, 10);
+      }, 100);
       this.creditsOpen = true;
     } else {
       credits.classList.add("hidden-credits");
@@ -605,6 +604,8 @@ class scrollObject {
     // allContainerLocations.map((item, index) => {
     //   item.updateIsInViewport();
     // });
+
+    if (disableScroll) return;
 
     let delta = e;
 
