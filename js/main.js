@@ -70,9 +70,9 @@ setTimeout(() => {
 
 //Check if mobile function
 
-window.mobilecheck = function() {
+window.mobilecheck = function () {
   var check = false;
-  (function(a) {
+  (function (a) {
     if (
       /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(
         a
@@ -111,22 +111,22 @@ let assets = [
       { title: "OMGQJSC" },
       { year: "2019" },
       { duration: "08:00" },
-      { type: "fiction" }
+      { type: "fiction" },
     ],
     imgFile: "./images/OMGQJSC.png",
-    link: "https://vimeo.com/375618283/54026dce17",
+    link: "https://vimeo.com/406776889/4ad5a837ad",
     linkID: "375618283",
     credits:
       "DIRECTED BY JOHN GRAY WITH MARYLOU MAYNIEL  ELLIOTT DANIEL JOHNSON  YOUSSOUF SY  JORDAN PEREIRA  CÔME GALAN  DIRECTOR OF PHOTOGRAPHY GRÉGOIRE LOBUT SCREENPLAY BY JOHN GRAY  JEAN-BAPTISTE RICHON  BENJAMIN LAMOUROUX PRODUCED BY CÔME GALAN  JOHN GRAY EDITED BY BENJAMIN LAMOUROUX DRONE OPERATOR HANSLEY  DIRECTOR OF PRODUCTION CÔME GALAN DIRECTOR ASSISTANT ALEXIA LOBUT PRODUCTION ASSISTANT LUCIE CHIGIONI SET PHOTOGRAPHER ELODIE TANN FIRST CAMERA ASSISTANT VALENTIN CORNOT SECOND CAMERA ASSISTANT BENJAMIN LAMOUROUX CHIEF ELECTRICIAN GRÉGOIRE LOBUT ASSISTANT ELECTRICIAN KENTIN GOBE STAGE MANAGEMENT PIERRE DANSETTE ORIGINAL MUSIC COMPOSED BY TIMOTHÉE JOLY GRAPHIC DESIGN BY RUPTURES STUDIO MARYLOU MAYNIEL’S COSTUME BY DRÔNE COLOR GRADING JADE DE BRITO SOUND INGENIOR LUCIEN ORIOL RE-RECORDING MIXER MATTHIEU FRATICELLI SPECIAL THANKS TO PIERRE-HENRI GALAN  ALEXANDRINE BOUSSION  RÉGION BRETAGNE  SNSM (SOCIETES DES SAUVETEURS EN MER)  ASTRID CAMPION  EMMANUEL DE WATRIGANT  ARNAUD FAURE  PATRICIA GAUTIER  ARTHUR ZERBINATTI",
     summary:
-      "The dazzling-story of a romantic encounter… mirror of an invisible rupture"
+      "The dazzling-story of a romantic encounter… mirror of an invisible rupture",
   },
   {
     information: [
       { title: "SO" },
       { year: "2018" },
       { duration: "29:45" },
-      { type: "docu-fiction" }
+      { type: "docu-fiction" },
     ],
     imgFile: "./images/SO-WHITE.png",
     link: "https://vimeo.com/399972664/4319d6cf9a",
@@ -134,50 +134,50 @@ let assets = [
     credits:
       "A FILM BY JOHN GRAY SCREENPLAY MATHIEU BERTAUX  JOHN GRAY  LOUISE PERBET PRODUCTION DIRECTOR CÔME GALAN PRODUCED BY CÔME GALAN  JOHN GRAY CAST MATHIEU BERTAUX  JEAN-BAPTISTE RICHON  CÔME GALAN  LOUISE PERBET  THEODORE BOYER CHAMAR  PAUL CHARLES LOUIS  SALIMA BELORGEY  SARAH GALAN  JADE CHAPERON  LOUIS BREDA  LUCAS FOLET MUSIC TIMOTHÉE JOLY DIRECTORS OF PHOTOGRAPHY ALEXIS GOYARD  CYPRIEN MUR 1ST CAMERA ASSISTANT BASILE BAUDELET 2ND CAMERA ASSISTANT SIMON GOUFFAULT STEADYCAM OPERATOR GRÉGOIRE LOBUT SOUND ENGINEER PAUL BESSOT  GUILLAUME LADIRAY SOUND EDITOR PHILIPPE CHARIOT RE-RECORDING MIXER MATTHIEU FRATICELLI EDIT BENJAMIN LAMOUROUX COLOR GRADING NICOLAS JARDIN TITLE DESIGN RAFAEL RIBAS SET PHOTOGRAPHER ELODIE TANN PARTY GIRLS ATIA KAPONTON  GWENDOLYNE DUMOULIN  CLARA LE LOUET  ELODIE TANN PARTY BOYS CÔME CARDEA  PAUL CHIGIONI  VALENTIN GUYONNET  NICOLAS JOURNEAU  BENJAMIN LAMOUROUX  JORDAN MEDINA SHUG  GUILLAUME TRESSON  ARTHUR ZERBINATTI ADDITIONAL MUSICS JUL COMME LES GENS D’ICI  SAFIA BAHMED-SCHARTZ FEAT TIMOTHÉE JOLY FINI L’ETE   YUNG LEAN AGONY THANKS TO LUCIE BOUTEILLE  CARLA GUERRA  MAURICE MICHELOT  KOCHÉ",
     summary:
-      "The links, the choices, the life of the youth in the Parisian suburbs during the Christmas holidays."
+      "The links, the choices, the life of the youth in the Parisian suburbs during the Christmas holidays.",
   },
   {
     information: [
       { title: "ZOZO" },
       { year: "2019" },
       { duration: "03:05" },
-      { type: "fiction" }
+      { type: "fiction" },
     ],
     imgFile: "./images/zozo.png",
     link: "https://vimeo.com/384770077/ba3ad52bed",
     linkID: "384770077",
     credits:
-      "DIRECTED BY JOHN GRAY WITH ZOË VNAK THEOPHILE BANCAL PRODUCED BY JOHN GRAY  CÔME GALAN DIRECTOR OF PHOTOGRAPHY CYPRIEN MUR SOUND PAUL BESSOT MAKE UP SENSHI DRONE OPERATOR HANSLEY EDIT BENJAMIN LAMOUROUX SOUND RE-RECORDING MIXER MATTHIEU FRATICELLI MUSIC TIMOTHÉE JOLY TITLE DESIGN RAFAEL RIBAS COLOR GRADE ANTOINE RAVACHE THANKS TO JEAN-BAPTISTE RICHON  KOCHÉ",
+      "DIRECTED BY JOHN GRAY WITH ZOË VNAK THEOPHILE BANCAL PRODUCED BY JOHN GRAY  CÔME GALAN DIRECTOR OF PHOTOGRAPHY CYPRIEN MUR SOUND PAUL BESSOT MAKE UP SENSHI DRONE OPERATOR HANSLEY EDIT BENJAMIN RE-RECORDING MIXER MATTHIEU FRATICELLI MUSIC TIMOTHÉE JOLY TITLE DESIGN RAFAEL RIBAS COLOR GRADE ANTOINE RAVACHE THANKS TO JEAN-BAPTISTE RICHON  KOCHÉ",
     summary:
-      "Zoë is photographed in a cave where the water in the waterfall no longer flows."
+      "Zoë is photographed in a cave where the water in the waterfall no longer flows.",
   },
   {
     information: [
       { title: "DOCTEUR BLANCHE" },
       { year: "2020" },
       { duration: "01:00" },
-      { type: "teaser" }
+      { type: "teaser" },
     ],
     imgFile: "./images/DB1-cropped.png",
     link: "https://vimeo.com/397771230/34cb77e40d",
     linkID: "397771230",
     credits:
       "DIRECTED BY JOHN GRAY WITH CÔME GALAN STYLISM BY CAROLINE DUSSUEL DIRECTOR OF PHOTOGRAPHY THEODORE HUGONNIER LABORATORY SILVERWAY PARIS EDIT BENJAMIN LAMOUROUX MUSIC : BABY BEN, DJEEP, MIDI BABY REAL & DJEEP - SEUL ET POURTANT (PROD. BABYBEN) (SPECIAL EDIT BY PHOTO)",
-    summary: "A young rockstar feels alone after a crazy concert."
-  }
+    summary: "A young rockstar feels alone after a crazy concert.",
+  },
 ];
 
 let bio = {
   logo: "./images/JG_final1.png",
   rawHTML:
-    "John Gray is a French film director born in Paris in 1993. In 2015 he produced the video clip Rolling Stone by Jorrdee with his collective of artists 3.0.87 and then collaborated the following year with Astrid Campion (artist-researcher) on the documentary film Les Devenirs du Charisme which questions the role and future of the French elite. He then produced several videos of brands, including VITO, to present the collection of a young stylist. In 2017, he co-wrote, co-produced and directed OMGQJSC (Oh My God Quand J’ai Su Ca), a pilot episode of a musical series without dialogues. The episode will become an 8 minutes film and be completed two years later. Meanwhile, he realizes the documentary portrait of his roommate, Tober, in the film S/O. He then decides to close this serie of self-produced films with his friend and producer Côme Galan by shooting ZOZO, a short film that is close to the aesthetics of an advertisement. In February 2020, he released his three films accompanied by the works of two other artists (Eliane Maluréanu and Elodie Tann) during the immersive exhibition Doctor Blanche, for which he took charge of the artistic direction with his friend and journalist Paul Chigioni."
+    "John Gray is a French film director born in Paris in 1993. In 2015 he produced the video clip Rolling Stone by Jorrdee with his collective of artists 3.0.87 and then collaborated the following year with Astrid Campion (artist-researcher) on the documentary film Les Devenirs du Charisme which questions the role and future of the French elite. He then produced several videos of brands, including VITO, to present the collection of a young stylist. In 2017, he co-wrote, co-produced and directed OMGQJSC (Oh My God Quand J’ai Su Ca), a pilot episode of a musical series without dialogues. The episode will become an 8 minutes film and be completed two years later. Meanwhile, he realizes the documentary portrait of his roommate, Tober, in the film S/O. He then decides to close this serie of self-produced films with his friend and producer Côme Galan by shooting ZOZO, a short film that is close to the aesthetics of an advertisement. In February 2020, he released his three films accompanied by the works of two other artists (Eliane Maluréanu and Elodie Tann) during the immersive exhibition Doctor Blanche, for which he took charge of the artistic direction with his friend and journalist Paul Chigioni.",
 };
 
 let nodesArray = [];
 
 //Init Layout
 
-const createBioNode = index => {
+const createBioNode = (index) => {
   let lineTop = document.createElement("div");
   let lineBottom = document.createElement("div");
   lineTop.classList.add("bio-container__line-top");
@@ -241,7 +241,7 @@ const createNode = (asset, index) => {
 
 //Create Credits Node
 
-const createCreditsNode = dataID => {
+const createCreditsNode = (dataID) => {
   let creditsNode = document.createElement("div");
   let infoNode = document.createElement("div");
   let summaryNode = document.createElement("div");
@@ -249,7 +249,7 @@ const createCreditsNode = dataID => {
   let creditsTextNode = document.createElement("div");
   creditsTextNode.innerHTML = assets[dataID].credits;
 
-  assets[dataID].information.map(item => {
+  assets[dataID].information.map((item) => {
     let subInfoNode = document.createElement("div");
     let subInfoNodeText = document.createTextNode(Object.values(item));
     subInfoNode.appendChild(subInfoNodeText);
@@ -327,9 +327,11 @@ class containerLocationObject {
       .cloneNode(true);
     this.event;
 
-    this.element.addEventListener("click", e => this.openVideo(e));
-    this.videoContainerClose.addEventListener("click", e => this.closeVideo(e));
-    this.videoContainerCredits.addEventListener("click", e =>
+    this.element.addEventListener("click", (e) => this.openVideo(e));
+    this.videoContainerClose.addEventListener("click", (e) =>
+      this.closeVideo(e)
+    );
+    this.videoContainerCredits.addEventListener("click", (e) =>
       this.toggleCredits()
     );
   }
@@ -339,7 +341,7 @@ class containerLocationObject {
 
     function applyBlur() {
       gsap.to(document.querySelector(".container"), {
-        webkitFilter: "blur(" + blurElement.a + "px)"
+        webkitFilter: "blur(" + blurElement.a + "px)",
       });
 
       document
@@ -357,7 +359,7 @@ class containerLocationObject {
       a: 35,
       ease: Power1.easeInOut,
       duration: 1,
-      onUpdate: applyBlur
+      onUpdate: applyBlur,
     });
 
     gsap.to(this.videoContainer, {
@@ -375,7 +377,7 @@ class containerLocationObject {
         this.event.children[0].classList.add("not-loading");
 
         createCreditsNode(dataID);
-      }
+      },
     });
   }
 
@@ -388,10 +390,10 @@ class containerLocationObject {
 
     player = new Plyr("#player", {
       fullscreen: { enabled: true, fallback: true, iosNative: true },
-      loop: { active: true }
+      loop: { active: true },
     });
 
-    player.on("ready", event => {
+    player.on("ready", (event) => {
       this.enterVideo(dataID);
     });
   }
@@ -422,14 +424,14 @@ class containerLocationObject {
 
     function applyBlur() {
       gsap.to(document.querySelector(".container"), {
-        webkitFilter: "blur(" + blurElement.a + "px)"
+        webkitFilter: "blur(" + blurElement.a + "px)",
       });
     }
 
     gsap.to(blurElement, {
       a: 0,
       ease: Power1.easeInOut,
-      onUpdate: applyBlur
+      onUpdate: applyBlur,
     });
 
     gsap.to(this.videoContainer, {
@@ -438,7 +440,7 @@ class containerLocationObject {
       // y: "3%",
       force3D: true,
       ease: Power1.easeInOut,
-      duration: 0.3
+      duration: 0.3,
     });
 
     gsap.to(document.querySelector(".container"), {
@@ -490,7 +492,7 @@ class containerLocationObject {
             disableScroll = false;
           }, 200);
         }
-      }
+      },
     });
   }
 
@@ -649,7 +651,7 @@ class scrollObject {
           // allContainerLocations.map((item, index) => {
           //   item.updateIsInViewport();
           // });
-        }
+        },
       });
       mainContainer.previousPosition = translateTo;
     }, 600);
@@ -694,7 +696,7 @@ class mainContainerConstructor {
     this.tween = gsap.to(this.element, {
       ease: Expo.easeOut,
       y: this.previousPosition + this.delta,
-      duration: isMobile ? 3 : 1
+      duration: isMobile ? 3 : 1,
     });
 
     let scrollAmount = this.previousPosition;
@@ -711,10 +713,9 @@ class mainContainerConstructor {
     this.scrollRatio = scrollAmount / window.innerHeight;
 
     if (this.scrollRatio > this.scrollThresholdUp / 2 && delta >= 0) {
-      this.element.children[
-        this.indexUp
-      ].style.transform = `translate(-50%,${(window.innerHeight / 2) *
-        this.multiplierUp}px)`;
+      this.element.children[this.indexUp].style.transform = `translate(-50%,${
+        (window.innerHeight / 2) * this.multiplierUp
+      }px)`;
 
       this.multiplierUp -= 1;
       this.multiplierDown -= 1;
@@ -734,10 +735,9 @@ class mainContainerConstructor {
       this.scrollThresholdUp += 1;
       this.scrollThresholdDown += 1;
     } else if (this.scrollRatio < this.scrollThresholdDown / 2 && delta <= 0) {
-      this.element.children[
-        this.indexDown
-      ].style.transform = `translate(-50%,${(window.innerHeight / 2) *
-        this.multiplierDown}px)`;
+      this.element.children[this.indexDown].style.transform = `translate(-50%,${
+        (window.innerHeight / 2) * this.multiplierDown
+      }px)`;
 
       this.multiplierDown += 1;
       this.multiplierUp += 1;
@@ -770,7 +770,7 @@ let scroll = new scrollObject();
 var hamster = Hamster(window);
 
 if (!window.mobilecheck()) {
-  hamster.wheel(function(event, delta, deltaX, deltaY) {
+  hamster.wheel(function (event, delta, deltaX, deltaY) {
     event.preventDefault();
     // console.log(delta, deltaX, deltaY);
     scroll.scrolled(delta);
@@ -779,15 +779,15 @@ if (!window.mobilecheck()) {
 
 //Touch Javascript
 
-let touchStart = e => {
+let touchStart = (e) => {
   touchEvents.touchStart(e);
 };
 
-let touchMove = e => {
+let touchMove = (e) => {
   touchEvents.touchMove(e);
 };
 
-let touchEnd = e => {
+let touchEnd = (e) => {
   touchEvents.touchEnd(e);
 };
 
