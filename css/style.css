@@ -93,6 +93,16 @@ body {
   transition: opacity 1s;
 }
 
+@-moz-document url-prefix() {
+  .biography-container {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  .credits-container {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+  }
+}
+
 @media (min-width: 576px) {
   .biography-container {
     align-items: center;
