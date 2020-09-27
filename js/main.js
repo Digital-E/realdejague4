@@ -2,7 +2,7 @@ let isMobileGeneral = false;
 
 let disableScroll = false;
 
-document.querySelector("body").style.height = `${window.innerHeight}px`;
+// document.querySelector("body").style.height = `${window.innerHeight}px`;
 
 setTimeout(() => {
   document.querySelector(".container-outer").classList.add("show");
@@ -591,6 +591,75 @@ class scrollObject {
     this.tween;
   }
 
+  scrolledMobile(e, resetDirection) {
+    // allContainerLocations.map((item, index) => {
+    //   item.updateIsInViewport();
+    // });
+
+    if (disableScroll) return;
+
+    let delta = e;
+
+    mainContainer.translateMainContainer(delta);
+
+    this.previousPosition = e;
+
+    this.isScrolling = true;
+
+    //Re Center On Stop Scroll
+    clearTimeout(this.isScrollingTimeout);
+    this.isScrollingTimeout = setTimeout(() => {
+      this.isScrolling = false;
+      let element = document.querySelector(`.container`);
+
+      let preAmount = element.style.transform
+        .split(", ")[1]
+        .split("")
+        .slice(0, -3)
+        .join("");
+
+      let amount = parseInt(preAmount) + delta;
+
+      let innerHeight = window.innerHeight;
+
+      let currentLocation = amount / innerHeight;
+
+      let multiplier = currentLocation.toString().split(".")[0];
+      let fraction = parseFloat(
+        `0.${currentLocation.toString().split(".")[1]}`
+      );
+
+      let translateTo = 0;
+
+      if (Math.abs(fraction) >= 1 / 3 && Math.abs(fraction) <= 2 / 3) {
+        amount > 0
+          ? (translateTo = innerHeight / 2 + multiplier * innerHeight)
+          : (translateTo = -innerHeight / 2 + multiplier * innerHeight);
+      } else if (Math.abs(fraction) >= 0 && Math.abs(fraction) < 1 / 3) {
+        translateTo = multiplier * innerHeight;
+      } else if (Math.abs(fraction) <= 1 && Math.abs(fraction) > 2 / 3) {
+        amount > 0
+          ? (translateTo = innerHeight + multiplier * innerHeight)
+          : (translateTo = -innerHeight + multiplier * innerHeight);
+      }
+
+      this.tween = gsap.to(element, {
+        ease: Power3.easeInOut,
+        y: translateTo - 25,
+        duration: 2,
+        force3D: true,
+        onUpdate: () => {
+          // allContainerLocations.map((item, index) => {
+          //   item.updateIsInViewport();
+          // });
+        },
+      });
+      mainContainer.previousPosition = translateTo - 25;
+    }, 2000);
+
+    // if (this.tween) this.tween.kill();
+  }
+
   scrolled(e, resetDirection) {
     // allContainerLocations.map((item, index) => {
     //   item.updateIsInViewport();
@@ -620,7 +689,9 @@ class scrollObject {
 
       let amount = parseInt(preAmount) + delta;
 
-      let currentLocation = amount / window.innerHeight;
+      let innerHeight = window.innerHeight;
+
+      let currentLocation = amount / innerHeight;
 
       let multiplier = currentLocation.toString().split(".")[0];
       let fraction = parseFloat(
@@ -631,17 +702,14 @@ class scrollObject {
 
       if (Math.abs(fraction) >= 1 / 3 && Math.abs(fraction) <= 2 / 3) {
         amount > 0
-          ? (translateTo =
-              window.innerHeight / 2 + multiplier * window.innerHeight)
-          : (translateTo =
-              -window.innerHeight / 2 + multiplier * window.innerHeight);
+          ? (translateTo = innerHeight / 2 + multiplier * innerHeight)
+          : (translateTo = -innerHeight / 2 + multiplier * innerHeight);
       } else if (Math.abs(fraction) >= 0 && Math.abs(fraction) < 1 / 3) {
-        translateTo = multiplier * window.innerHeight;
+        translateTo = multiplier * innerHeight;
       } else if (Math.abs(fraction) <= 1 && Math.abs(fraction) > 2 / 3) {
         amount > 0
-          ? (translateTo = window.innerHeight + multiplier * window.innerHeight)
-          : (translateTo =
-              -window.innerHeight + multiplier * window.innerHeight);
+          ? (translateTo = innerHeight + multiplier * innerHeight)
+          : (translateTo = -innerHeight + multiplier * innerHeight);
       }
 
       this.tween = gsap.to(element, {
@@ -848,9 +916,9 @@ class touchEventsObject {
     this.previousY = this.currentY;
 
     if (this.currentTouchTime < this.startTouchTime + 150) {
-      mainContainer.translateMainContainer(this.deltaY * 2, true);
+      scroll.scrolledMobile(this.deltaY * 2);
     } else {
-      mainContainer.translateMainContainer(this.deltaY * 1, true);
+      scroll.scrolledMobile(this.deltaY * 1);
     }
 
     this.triggered = true;
