@@ -56,19 +56,20 @@ setTimeout(() => {
         document.querySelector(".biography-container").style.display = "none";
       }, 1000);
     });
-}, 4500);
+}, 1000);
+//}, 4500);
 
-setTimeout(() => {
-  document.querySelector(".intro-logo").classList.add("show-logo");
-}, 500);
+// setTimeout(() => {
+//   document.querySelector(".intro-logo").classList.add("show-logo");
+// }, 500);
 
-setTimeout(() => {
-  document.querySelector(".intro-logo__img").classList.add("show-logo");
-}, 700);
+// setTimeout(() => {
+//   document.querySelector(".intro-logo__img").classList.add("show-logo");
+// }, 700);
 
-setTimeout(() => {
-  document.querySelector(".intro-logo").classList.remove("show-logo");
-}, 4000);
+// setTimeout(() => {
+//   document.querySelector(".intro-logo").classList.remove("show-logo");
+// }, 4000);
 
 //Check if mobile function
 
